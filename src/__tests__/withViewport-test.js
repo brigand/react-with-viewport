@@ -18,6 +18,25 @@ it(`doesn't error`, () => {
   const C = () => <div />;
   const W = withViewport({})(C);
   mount(<W />);
+  // no params, just for coverage
+  const W2 = withViewport()(C);
+  mount(<W2 />);
+});
+
+it(`unmounts correctly`, () => {
+  const C = () => <div />;
+  const W = withViewport({})(C);
+  const x = mount(<W />);
+  const inst = x.instance();
+  const spy = jest.fn();
+  inst.doUpdate = spy;
+  resize(500);
+  expect(spy).toHaveBeenCalledTimes(1);
+  resize(500);
+  expect(spy).toHaveBeenCalledTimes(2);
+  x.unmount();
+  resize(500);
+  expect(spy).toHaveBeenCalledTimes(2);
 });
 
 it(`handles resize`, () => {
