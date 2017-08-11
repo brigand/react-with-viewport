@@ -1,6 +1,6 @@
 {
   "name": "react-with-viewport",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "main": "lib/withViewport.js",
   "repository": "git@github.com:brigand/react-with-viewport.git",
   "author": "Frankie Bagnardi <f.bagnardi@gmail.com>",
