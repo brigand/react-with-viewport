@@ -1,0 +1,6 @@
+{
+  "presets": [
+    ["env", {"targets": ["IE9"]}],
+    "react"
+  ]
+}
