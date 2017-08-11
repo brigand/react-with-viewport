@@ -1,3 +1,8 @@
+[![build status](https://img.shields.io/travis/brigand/react-with-viewport/master.svg?style=flat-square)](https://travis-ci.org/brigand/react-with-viewport)
+[![Coverage Status](https://coveralls.io/repos/github/brigand/react-with-viewport/badge.svg?branch=master)](https://coveralls.io/github/brigand/react-with-viewport?branch=master)
+[![npm downloads](https://img.shields.io/npm/dm/react-with-viewport.svg?style=flat-square)](https://www.npmjs.com/package/react-with-viewport)
+[![Dependency Status](https://img.shields.io/david/brigand/react-with-viewport.svg?style=flat-square)](https://david-dm.org/brigand/react-with-viewport)
+
 
 This high order component provides the viewport size to the child in an efficient ways.
 
