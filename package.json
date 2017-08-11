@@ -8,7 +8,8 @@
   "scripts": {
     "test": "jest --coverage",
     "build": "babel src --out-dir lib --ignore __tests__",
-    "prepublish": "npm test && npm run build"
+    "prepublish": "npm test && npm run build",
+    "coveralls": "cat ./coverage/lcov.info | node node_modules/.bin/coveralls"
   },
   "dependencies": {
     "lodash": "^4.17.4"
@@ -19,6 +20,7 @@
     "babel-jest": "^20.0.3",
     "babel-preset-env": "^1.6.0",
     "babel-preset-react": "^6.24.1",
+    "coveralls": "^2.13.1",
     "enzyme": "^2.9.1",
     "jest": "^20.0.4",
     "react": "^15.6.1",
