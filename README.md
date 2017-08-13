@@ -32,7 +32,7 @@ With breakpoints, your component receives new props when the viewport passes a t
 ```jsx
 withViewport({
   breakpoints: {
-    mobile: { width: 0 },
+    mobile: { width: 480 },
     tablet: { width: 720 },
     desktop: { width: 1200 },
     large: { width: 1620 },
@@ -40,7 +40,7 @@ withViewport({
 })
 ```
 
-These are the lower bounds, so if the width is 500, then it'll be the 'mobile' breakpoint.
+These are the upper bounds, so if the width is 500, then it'll be the 'mobile' breakpoint.
 
 ## Contributing
 

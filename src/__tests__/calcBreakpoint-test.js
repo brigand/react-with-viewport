@@ -6,10 +6,26 @@ const examplePoints = {
   desktop: { width: 1200 },
 };
 
+const results = Object.keys(examplePoints).reduce((acc, key) => {
+  acc[key] = Object.assign({}, examplePoints[key], { key });
+  return acc;
+}, {});
+
 it(`works`, () => {
-  expect(calcBreakpoint(examplePoints, 200)).toEqual({ key: 'mobile', width: 400 });
-  expect(calcBreakpoint(examplePoints, 500)).toEqual({ key: 'tablet', width: 800 });
-  expect(calcBreakpoint(examplePoints, 1000)).toEqual({ key: 'desktop', width: 1200 });
-  expect(calcBreakpoint(examplePoints, 1600)).toEqual({ key: 'desktop', width: 1200 });
+  expect(calcBreakpoint(results, 200)).toEqual([
+    results.mobile,
+    results.tablet,
+    results.desktop,
+  ]);
+  expect(calcBreakpoint(results, 500)).toEqual([
+    results.tablet,
+    results.desktop,
+  ]);
+  expect(calcBreakpoint(results, 1000)).toEqual([
+    results.desktop,
+  ]);
+  expect(calcBreakpoint(results, 1600)).toEqual([
+    results.desktop,
+  ]);
 });
 
