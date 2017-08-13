@@ -44,7 +44,7 @@ These are the upper bounds, so if the width is 200, then it'll be the 'mobile' b
 
 ### Relative operators
 
-The `breakPoint` prop has methods on it for determining if e.g. the current breakPoint is less-than-or-equal-to 'mobile.
+The `breakPoint` prop has methods on it for determining if e.g. the current breakPoint is less-than-or-equal-to 'mobile'.
 
 ```js
 this.props.breakPoint.isLte('tablet') // returns true or false
