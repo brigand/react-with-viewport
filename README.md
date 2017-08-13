@@ -26,6 +26,8 @@ If your component takes props named 'width', 'height', or 'breakPoint', you can 
 
 Props passed:
 
+<!-- http://www.tablesgenerator.com/markdown_tables -->
+
 | prop   | description         |
 |--------|---------------------|
 | width  | the viewport width  |
