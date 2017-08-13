@@ -27,5 +27,10 @@ it(`works`, () => {
   expect(calcBreakpoint(results, 1600)).toEqual([
     results.desktop,
   ]);
+  expect(calcBreakpoint(results, 1000000)).toEqual([
+    results.desktop,
+  ]);
+
+
 });
 

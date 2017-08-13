@@ -40,11 +40,18 @@ function withViewport(params = {}) {
         );
         const res = {
           matches: breakPoints,
+          isLte(key) {
+            return breakPoints.findIndex(x => x.key === key) !== -1;
+          },
           isLt(key) {
-            for (let i = 0; i < breakPoints.length; i += 1) {
-              const bp = breakPoints[i];
-            }
-          }
+            return res.isLte(key) && breakPoints[0].key !== key;
+          },
+          isGte(key) {
+            return !res.isLt(key);
+          },
+          isGt(key) {
+            return !res.isLte(key);
+          },
         };
         Object.assign(res, breakPoints[0]);
         return res;

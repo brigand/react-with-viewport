@@ -54,10 +54,83 @@ it(`gives correct breakpoints`, () => {
   const W = withViewport({ breakPoints: examplePoints })(C);
   const x = mount(<W />);
   const getBreakpoint = () => x.find(C).props().breakPoint;
-  expect(getBreakpoint()).toEqual({ width: 800, key: 'tablet'});
+  expect(getBreakpoint()).toMatchObject({ width: 800, key: 'tablet'});
   resize(1000);
-  expect(getBreakpoint()).toEqual({ width: 1200, key: 'desktop'});
+  expect(getBreakpoint()).toMatchObject({ width: 1200, key: 'desktop'});
 });
+
+function prepareRelative() {
+  resize(100);
+  const C = () => <div />;
+  const W = withViewport({ breakPoints: examplePoints })(C);
+  const x = mount(<W />);
+  const getBreakpoint = () => x.find(C).props().breakPoint;
+  return getBreakpoint;
+}
+
+it(`breakPoint.isLte`, () => {
+  const getBreakpoint = prepareRelative();
+  let bp = getBreakpoint();
+
+  expect(bp.isLte('mobile')).toBe(true);
+  expect(bp.isLte('tablet')).toBe(true);
+  expect(bp.isLte('desktop')).toBe(true);
+
+  resize(500);
+  bp = getBreakpoint();
+  expect(bp.isLte('mobile')).toBe(false);
+  expect(bp.isLte('tablet')).toBe(true);
+  expect(bp.isLte('desktop')).toBe(true);
+});
+
+it(`breakPoint.isLt`, () => {
+  const getBreakpoint = prepareRelative();
+  let bp = getBreakpoint();
+
+  expect(bp.isLt('mobile')).toBe(false);
+  expect(bp.isLt('tablet')).toBe(true);
+  expect(bp.isLt('desktop')).toBe(true);
+
+  resize(500);
+  bp = getBreakpoint();
+  expect(bp.isLt('mobile')).toBe(false);
+  expect(bp.isLt('tablet')).toBe(false);
+  expect(bp.isLt('desktop')).toBe(true);
+});
+
+it(`breakPoint.isGte`, () => {
+  const getBreakpoint = prepareRelative();
+  let bp = getBreakpoint();
+
+  expect(bp.isGte('mobile')).toBe(true);
+  expect(bp.isGte('tablet')).toBe(false);
+  expect(bp.isGte('desktop')).toBe(false);
+
+  resize(500);
+  bp = getBreakpoint();
+  expect(bp.isGte('mobile')).toBe(true);
+  expect(bp.isGte('tablet')).toBe(true);
+  expect(bp.isGte('desktop')).toBe(false);
+});
+
+it(`breakPoint.isGt`, () => {
+  const getBreakpoint = prepareRelative();
+  let bp = getBreakpoint();
+
+  expect(bp.isGt('mobile')).toBe(false);
+  expect(bp.isGt('tablet')).toBe(false);
+  expect(bp.isGt('desktop')).toBe(false);
+
+  resize(500);
+  bp = getBreakpoint();
+  expect(bp.isGt('mobile')).toBe(true);
+  expect(bp.isGt('tablet')).toBe(false);
+  expect(bp.isGt('desktop')).toBe(false);
+});
+
+
+
+
 
 it(`doesn't update if breakpoint hasn't changed`, () => {
   resize(500);
