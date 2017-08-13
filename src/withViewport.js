@@ -34,11 +34,27 @@ function withViewport(params = {}) {
         if (!params.breakPoints) {
           return null;
         }
-        const breakPoint = calcBreakpoint(
+        const breakPoints = calcBreakpoint(
           params.breakPoints,
           this.getViewport().width,
         );
-        return breakPoint;
+        const res = {
+          matches: breakPoints,
+          isLte(key) {
+            return breakPoints.findIndex(x => x.key === key) !== -1;
+          },
+          isLt(key) {
+            return res.isLte(key) && breakPoints[0].key !== key;
+          },
+          isGte(key) {
+            return !res.isLt(key);
+          },
+          isGt(key) {
+            return !res.isLte(key);
+          },
+        };
+        Object.assign(res, breakPoints[0]);
+        return res;
       }
       getViewport() {
         const width = window.innerWidth;

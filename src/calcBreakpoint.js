@@ -11,10 +11,14 @@ function calcBreakpoint(breakpoints, width) {
     { key }
   ));
 
+  const results = [];
   for (let i = 0; i < values.length; i += 1) {
-    if (width < values[i].width) return values[i];
+    if (width < values[i].width) results.push(values[i]);
   }
-  return values[values.length - 1];
+  if (results.length === 0) {
+    results.push(values[values.length - 1]);
+  }
+  return results;
 }
 
 module.exports = calcBreakpoint;
