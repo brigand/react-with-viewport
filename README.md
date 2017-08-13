@@ -24,6 +24,12 @@ You can pass a throttle timeout: `withViewport({ throttle: 500 })`.
 
 If your component takes props named 'width', 'height', or 'breakPoint', you can rename the props passed by withViewport: `withViewport({ props: ['viewWidth', 'viewHeight', 'bp' ] })`.
 
+Props passed:
+
+| prop   | description         |
+|--------|---------------------|
+| width  | the viewport width  |
+| height | the viewport height |
 
 ## Breakpoints
 
@@ -39,6 +45,19 @@ withViewport({
   }
 })
 ```
+
+Props passed:
+
+| prop             | description                                                              |
+|------------------|--------------------------------------------------------------------------|
+| width            | the viewport width                                                       |
+| height           | the viewport height                                                      |
+| breakPoint.key   | the key of the breakPoints object that matched                           |
+| breakPoint.width | the width specified in the breakPoint object                             |
+| breakPoint.isLt  | function that checks if the breakPoint is smaller than the specified key |
+| breakPoint.isLte | see above                                                                |
+| breakPoint.isGt  | see above                                                                |
+| breakPoint.isGte | see above                                                                |
 
 These are the upper bounds, so if the width is 200, then it'll be the 'mobile' breakpoint. If it's larger than the highest breakpoint, it'll be that breakpoint.
 
